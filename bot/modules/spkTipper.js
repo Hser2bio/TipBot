@@ -13,9 +13,9 @@ exports.commands = ['tipspk'];
 exports.tipspk = {
   usage: '<subcommand>',
   description:
-    '__**SparksPay (SPK) Tipper**__\nTransaction Fees: **' + paytxfee + '**\n    **!tipspk** : Displays This Message\n    **!tipspk balance** : get your balance\n    **!tipspk deposit** : get address for your deposits\n    **!tipspk withdraw <ADDRESS> <AMOUNT>** : withdraw coins to specified address\n    **!tipspk <@user> <amount>** :mention a user with @ and then the amount to tip them\n    **!tipspk private <user> <amount>** : put private before Mentioning a user to tip them privately.\n\n    has a default txfee of ' + paytxfee,
+    '__**SparksPay (SPK) Tipper**__\nTransaction Fees: **' + paytxfee + '**\n    **$tipspk** : Displays This Message\n    **$tipspk balance** : get your balance\n    **$tipspk deposit** : get address for your deposits\n    **$tipspk withdraw <ADDRESS> <AMOUNT>** : withdraw coins to specified address\n    **$tipspk <@user> <amount>** :mention a user with @ and then the amount to tip them\n    **$tipspk private <user> <amount>** : put private before Mentioning a user to tip them privately.\n\n    has a default txfee of ' + paytxfee,
   process: async function(bot, msg, suffix) {
-    let tipper = msg.author.id.replace('!', ''),
+    let tipper = msg.author.id.replace('$', ''),
       words = msg.content
         .trim()
         .split(' ')
@@ -24,7 +24,7 @@ exports.tipspk = {
         }),
       subcommand = words.length >= 2 ? words[1] : 'help',
       helpmsg =
-        '__**SparksPay (SPK) Tipper**__\nTransaction Fees: **' + paytxfee + '**\n    **!tipspk** : Displays This Message\n    **!tipspk balance** : get your balance\n    **!tipspk deposit** : get address for your deposits\n    **!tipspk withdraw <ADDRESS> <AMOUNT>** : withdraw coins to specified address\n    **!tipspk <@user> <amount>** :mention a user with @ and then the amount to tip them\n    **!tipspk private <user> <amount>** : put private before Mentioning a user to tip them privately.\n\n    **<> : Replace with appropriate value.**',
+        '__**SparksPay (SPK) Tipper**__\nTransaction Fees: **' + paytxfee + '**\n    **$tipspk** : Displays This Message\n    **$tipspk balance** : get your balance\n    **$tipspk deposit** : get address for your deposits\n    **$tipspk withdraw <ADDRESS> <AMOUNT>** : withdraw coins to specified address\n    **$tipspk <@user> <amount>** :mention a user with @ and then the amount to tip them\n    **$tipspk private <user> <amount>** : put private before Mentioning a user to tip them privately.\n\n    **<> : Replace with appropriate value.**',
       channelwarning = 'Please use <#bot-spam> or DMs to talk to bots.';
     switch (subcommand) {
       case 'help':
@@ -205,7 +205,7 @@ function doTip(bot, message, tipper, words, helpmsg) {
             return;
           }
       if (message.mentions.users.first().id) {
-        sendSPK(bot, message, tipper, message.mentions.users.first().id.replace('!', ''), amount, prv);
+        sendSPK(bot, message, tipper, message.mentions.users.first().id.replace('$', ''), amount, prv);
       } else {
         message.reply('Sorry, I could not find a user in your tip...').then(message => message.delete(10000));
       }
@@ -288,7 +288,7 @@ function sendSPK(bot, message, tipper, recipient, amount, privacyFlag) {
                 ]
               } });
                   if (
-                    message.content.startsWith('!tipspk private ')
+                    message.content.startsWith('$tipspk private ')
                   ) {
                     message.delete(1000); //Supposed to delete message
                   }
