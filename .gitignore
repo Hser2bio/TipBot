@@ -68,3 +68,4 @@ bot/.DS_Store
 # Configuration files
 default.json
 ecosystem.config.js
+/.project

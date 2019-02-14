@@ -1,13 +1,13 @@
 'use strict';
 
-const bitcoin = require('bitcoin');
+const Client = require('bitcoin-core');
 
 let Regex = require('regex'),
   config = require('config'),
   spamchannels = config.get('moderation').botspamchannels;
 let walletConfig = config.get('spk').config;
 let paytxfee = config.get('spk').paytxfee;
-const spk = new bitcoin.Client(walletConfig);
+const spk = new Client(walletConfig);
 
 exports.commands = ['tipspk'];
 exports.tipspk = {
@@ -129,7 +129,7 @@ function doWithdraw(message, tipper, words, helpmsg) {
         message.channel.send('Please leave atleast ' + paytxfee + ' Sparks (SPK) for transaction fees!');
         return;
       }
-      spk.sendFrom(tipper, address, Number(amount), function(err, txId) {
+      spk.sendFrom(tipper, address, Number(paytxfee), Number(amount), function(err, txId) {
         if (err) {
           message.reply(err.message).then(message => message.delete(10000));
         } else {
@@ -218,7 +218,7 @@ function sendSPK(bot, message, tipper, recipient, amount, privacyFlag) {
     if (err) {
       message.reply(err.message).then(message => message.delete(10000));
     } else {
-          spk.sendFrom(tipper, address, Number(amount), 1, null, null, function(err, txId) {
+          spk.sendFrom(tipper, address, Number(paytxfee), Number(amount), function(err, txId) {
               if (err) {
                 message.reply(err.message).then(message => message.delete(10000));
               } else {
