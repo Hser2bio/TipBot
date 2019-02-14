@@ -129,7 +129,7 @@ function doWithdraw(message, tipper, words, helpmsg) {
         message.channel.send('Please leave atleast ' + paytxfee + ' Sparks (SPK) for transaction fees!');
         return;
       }
-      spk.sendFrom(tipper, address, Number(paytxfee), Number(amount), function(err, txId) {
+      spk.sendFrom(tipper, address, Number(amount), 1, function(err, txId) {
         if (err) {
           message.reply(err.message).then(message => message.delete(10000));
         } else {
@@ -218,7 +218,7 @@ function sendSPK(bot, message, tipper, recipient, amount, privacyFlag) {
     if (err) {
       message.reply(err.message).then(message => message.delete(10000));
     } else {
-          spk.sendFrom(tipper, address, Number(paytxfee), Number(amount), function(err, txId) {
+          spk.sendFrom(tipper, address, Number(amount), 1, function(err, txId) {
               if (err) {
                 message.reply(err.message).then(message => message.delete(10000));
               } else {

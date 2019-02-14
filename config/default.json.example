@@ -9,8 +9,8 @@
     "paytxfee": .01,
     "config": {
       "port": 8892,
-      "user": "username",
-      "pass": "Do-Not-Use-This-Password-Youll-Be-Hacked-For-all-Teh-Moneys!"
+      "username": "username",
+      "passpassword": "Do-Not-Use-This-Password-Youll-Be-Hacked-For-all-Teh-Moneys!"
     }
   },
   
