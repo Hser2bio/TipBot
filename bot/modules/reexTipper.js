@@ -7,7 +7,7 @@ let Regex = require('regex'),
   spamchannels = config.get('moderation').botspamchannels;
 let walletConfig = config.get('reex').config;
 let paytxfee = config.get('reex').paytxfee;
-const spk = new bitcoin.Client(walletConfig);
+const reex = new bitcoin.Client(walletConfig);
 
 exports.commands = ['tipreex'];
 exports.tipreex = {
