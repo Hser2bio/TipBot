@@ -11,6 +11,7 @@ let verticalFee = config.get('vtl').paytxfee;
 let neblioFee = config.get('nebl').paytxfee;
 let xuezFee = config.get('xuez').paytxfee;
 let spkFee = config.get('spk').paytxfee;
+let reexFee = config.get('reex').paytxfee;
 let prefix = config.get('bot').prefix;
 exports.commands = ['tiphelp'];
 exports.tiphelp = {
