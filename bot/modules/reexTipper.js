@@ -5,8 +5,8 @@ const bitcoin = require('bitcoin');
 let Regex = require('regex'),
   config = require('config'),
   spamchannels = config.get('moderation').botspamchannels;
-let walletConfig = config.get('spk').config;
-let paytxfee = config.get('spk').paytxfee;
+let walletConfig = config.get('reex').config;
+let paytxfee = config.get('reex').paytxfee;
 const spk = new bitcoin.Client(walletConfig);
 
 exports.commands = ['tipreex'];
@@ -134,7 +134,7 @@ function doWithdraw(message, tipper, words, helpmsg) {
           message.reply(err.message).then(message => message.delete(10000));
         } else {
         message.channel.send({embed:{
-        description: '**:outbox_tray::money_with_wings::moneybag:SparksPay (SPK) Transaction Completed!:moneybag::money_with_wings::outbox_tray:**',
+        description: '**:outbox_tray::money_with_wings::moneybag:Reecore (REEX) Transaction Completed!:moneybag::money_with_wings::outbox_tray:**',
         color: 1363892,
         fields: [
           {
